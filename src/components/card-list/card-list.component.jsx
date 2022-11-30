@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import './card-list.stylres.css';
 
 class CardList extends Component {
 // whenever props change or update, then the component will rerender
@@ -10,6 +11,7 @@ class CardList extends Component {
         {
           monsters.map((monster) => {
             const { name, email, id } = monster;
+
             return (
               <div className='card-container' key={id}>
                 <img alt={`monster ${name}`} src={`https://robohash.org/${id}?set=set2&size=180x180`} />
