@@ -1,6 +1,7 @@
 import './App.css';
 import { Component } from 'react';
 import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 
 class App extends Component {
 // classes ALWAYS runs constructor first
@@ -19,6 +20,7 @@ class App extends Component {
 
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
+      // whenever setState is called, render is called
       .then((users) => this.setState(() => {
         return {monsters: users}
       }
@@ -50,13 +52,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input 
-          className="search-box" 
-          type="search" 
-          placeholder="Search Monster" 
-          // this onchange only refers to the onSearchChange method which has already been initialized
-          onChange={onSearchChange}
-        />
+        <SearchBox 
+          className='search-box'
+          onChangeHandler={onSearchChange} 
+          placeholder='Search Monster'
+          />
         {/*
           filteredMonsters.map((monster) => {
             return (
@@ -66,7 +66,7 @@ class App extends Component {
             )
           })*/
         }
-        <CardList monsters={'I am a monster'} />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   }
