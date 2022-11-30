@@ -27,7 +27,7 @@ class App extends Component {
       ))
   }
 
-  // when the class is initialized, this method is built 
+  // when the class is initialized, this method is built and passed into the input onchange handler which is better than rerendering an anonymous function
   onSearchChange = (event) => {
     console.log({startingArray: this.state.monsters})
     // Lowercase search input
@@ -42,6 +42,7 @@ class App extends Component {
   render() {
     console.log('render')
 
+    // Use destructuring to remove this and this.state from variables
     const { monsters, searchField } = this.state;
     const { onSearchChange } = this;
 
