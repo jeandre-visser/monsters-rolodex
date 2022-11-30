@@ -27,6 +27,17 @@ class App extends Component {
       ))
   }
 
+  // when the class is initialized, this method is built 
+  onSearchChange = (event) => {
+    console.log({startingArray: this.state.monsters})
+    // Lowercase search input
+    const searchField = event.target.value.toLocaleLowerCase();
+
+    this.setState(() => {
+      return { searchField };
+    })
+  }
+
   // the initial render runs after the constructor
   render() {
     console.log('render')
@@ -41,15 +52,8 @@ class App extends Component {
           className="search-box" 
           type="search" 
           placeholder="Search Monster" 
-          onChange={(event) => {
-            console.log({startingArray: this.state.monsters})
-            // Lowercase search input
-            const searchField = event.target.value.toLocaleLowerCase();
-
-            this.setState(() => {
-              return { searchField };
-            })
-          }}
+          // this onchange only refers to the onSearchChange method which has already been initialized
+          onChange={this.onSearchChange}
         />
         {
           filteredMonsters.map((monster) => {
